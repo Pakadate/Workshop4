@@ -17,15 +17,6 @@ public class HelloWorldController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/hello/{name}")
-    public ResponseEntity<Map<String, String>> helloWithName(@PathVariable String name) {
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Hello " + name + " from Java Spring Boot!");
-        response.put("status", "success");
-        response.put("timestamp", java.time.Instant.now().toString());
-        return ResponseEntity.ok(response);
-    }
-
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> root() {
         Map<String, Object> response = new HashMap<>();
