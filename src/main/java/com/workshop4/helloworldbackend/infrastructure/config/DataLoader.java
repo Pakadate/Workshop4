@@ -1,22 +1,28 @@
-package com.workshop4.helloworldbackend.config;
+package com.workshop4.helloworldbackend.infrastructure.config;
 
-import com.workshop4.helloworldbackend.entity.User;
-import com.workshop4.helloworldbackend.repository.UserRepository;
+import com.workshop4.helloworldbackend.infrastructure.persistence.entity.UserEntity;
+import com.workshop4.helloworldbackend.infrastructure.persistence.repository.JpaUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+/**
+ * Data Loader - Infrastructure layer
+ * Loads initial data using JPA entities
+ */
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
 
-    @Autowired
-    private UserRepository userRepository;
+    private final JpaUserRepository userRepository;
+
+    public DataLoader(JpaUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,7 +37,7 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadSampleUsers() {
         // Sample user 1 - สมชาย ใจดี (ตามรูป)
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setMemberId("LBK001234");
         user1.setFirstName("สมชาย");
         user1.setLastName("ใจดี");
@@ -50,7 +56,7 @@ public class DataLoader implements CommandLineRunner {
         user1.setIsActive(true);
 
         // Sample user 2 - สมหญิง รักดี
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setMemberId("LBK001235");
         user2.setFirstName("สมหญิง");
         user2.setLastName("รักดี");
@@ -69,7 +75,7 @@ public class DataLoader implements CommandLineRunner {
         user2.setIsActive(true);
 
         // Sample user 3 - วิชัย มั่นคง
-        User user3 = new User();
+        UserEntity user3 = new UserEntity();
         user3.setMemberId("LBK001236");
         user3.setFirstName("วิชัย");
         user3.setLastName("มั่นคง");
@@ -88,7 +94,7 @@ public class DataLoader implements CommandLineRunner {
         user3.setIsActive(true);
 
         // Sample user 4 - กานต์ธิดา สวยงาม
-        User user4 = new User();
+        UserEntity user4 = new UserEntity();
         user4.setMemberId("LBK001237");
         user4.setFirstName("กานต์ธิดา");
         user4.setLastName("สวยงาม");
@@ -107,7 +113,7 @@ public class DataLoader implements CommandLineRunner {
         user4.setIsActive(false); // Inactive user for testing
 
         // Sample user 5 - ธนากร เจริญสุข
-        User user5 = new User();
+        UserEntity user5 = new UserEntity();
         user5.setMemberId("LBK001238");
         user5.setFirstName("ธนากร");
         user5.setLastName("เจริญสุข");

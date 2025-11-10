@@ -1,4 +1,4 @@
-package com.workshop4.helloworldbackend.controller;
+package com.workshop4.helloworldbackend.presentation.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
